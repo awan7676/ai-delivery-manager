@@ -133,11 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# CORS — allow local dev + any production frontend URL set via env var
-_cors_origins = os.environ.get('CORS_ALLOWED_ORIGINS', '')
-_extra_origins = [o.strip() for o in _cors_origins.split(',') if o.strip()]
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-] + _extra_origins
+# CORS — allow all origins (this is a demo app; lock this down if going to production)
+CORS_ALLOW_ALL_ORIGINS = True
