@@ -84,6 +84,8 @@ presentation.html              Self-contained slide deck (open in any browser)
 
 ## Deploying for Free (Always On)
 
+Both the backend and frontend live in the **same GitHub repo** (`hackathon`). You deploy them separately — but both point at the same repo. You just tell each service which subfolder to use via the **Root Directory** setting.
+
 The backend goes on **Render** (free), the frontend goes on **Vercel** (free). A free ping service keeps the backend awake 24/7 — no sleeping, no cold starts.
 
 ---
@@ -91,7 +93,7 @@ The backend goes on **Render** (free), the frontend goes on **Vercel** (free). A
 ### Step 1 — Deploy the Backend on Render
 
 1. Go to [render.com](https://render.com) → sign up with GitHub → click **New → Web Service**.
-2. Connect your GitHub repo.
+2. Connect your **`hackathon`** GitHub repo.
 3. Fill in these fields exactly:
 
    | Field | Value |
@@ -123,7 +125,7 @@ The backend goes on **Render** (free), the frontend goes on **Vercel** (free). A
 ### Step 2 — Deploy the Frontend on Vercel
 
 1. Go to [vercel.com](https://vercel.com) → sign up with GitHub → click **Add New → Project**.
-2. Import your GitHub repo.
+2. Import the **same `hackathon` repo** (same repo as Step 1 — this is fine, Vercel and Render each read a different subfolder).
 3. Fill in:
 
    | Field | Value |
