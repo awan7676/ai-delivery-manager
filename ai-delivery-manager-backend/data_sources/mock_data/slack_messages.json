@@ -1,0 +1,62 @@
+[
+  {
+    "user": "Ali",
+    "message": "Login API is blocked — still waiting for OAuth keys from the platform team",
+    "date": "2026-02-09",
+    "channel": "#dev"
+  },
+  {
+    "user": "Client (Sarah M.)",
+    "message": "Can we get an update on dashboard progress? The steering committee meets on Friday",
+    "date": "2026-02-10",
+    "channel": "#client"
+  },
+  {
+    "user": "Priya",
+    "message": "CI/CD pipeline is live — builds and deploys are automated. No manual steps needed anymore.",
+    "date": "2026-02-07",
+    "channel": "#announcements"
+  },
+  {
+    "user": "Sara",
+    "message": "User profile page and dashboard UI both merged. Looks great in staging!",
+    "date": "2026-02-11",
+    "channel": "#dev"
+  },
+  {
+    "user": "Ali",
+    "message": "Payment integration is blocked by login API. Cannot proceed until PROJ-101 is done and merged.",
+    "date": "2026-02-13",
+    "channel": "#dev"
+  },
+  {
+    "user": "Priya",
+    "message": "Heads up: security audit is blocked — compliance team has not signed off yet. Flagging as risk for this sprint.",
+    "date": "2026-02-15",
+    "channel": "#risk"
+  },
+  {
+    "user": "Client (Sarah M.)",
+    "message": "Really happy with the dashboard UI! The team has done excellent work. Are we still on track for March 1 go-live?",
+    "date": "2026-02-12",
+    "channel": "#client"
+  },
+  {
+    "user": "Sara",
+    "message": "Mobile responsive layout is in progress but hitting some edge cases. May push to next sprint.",
+    "date": "2026-02-14",
+    "channel": "#dev"
+  },
+  {
+    "user": "Ali",
+    "message": "Still waiting for a response from platform team about OAuth config — 5 days and no reply. Escalation needed?",
+    "date": "2026-02-17",
+    "channel": "#risk"
+  },
+  {
+    "user": "Priya",
+    "message": "All hands meeting Monday 9am — sprint review and planning. Please update your ticket statuses before then.",
+    "date": "2026-02-18",
+    "channel": "#general"
+  }
+]

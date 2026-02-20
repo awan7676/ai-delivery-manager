@@ -1,0 +1,86 @@
+[
+  {
+    "repo": "frontend",
+    "commit": "Initial project scaffold and folder structure",
+    "author": "Priya",
+    "date": "2026-02-03",
+    "sha": "a1b2c3d"
+  },
+  {
+    "repo": "backend",
+    "commit": "Setup Django project with REST framework",
+    "author": "Ali",
+    "date": "2026-02-04",
+    "sha": "b2c3d4e"
+  },
+  {
+    "repo": "backend",
+    "commit": "Add user model and authentication base",
+    "author": "Ali",
+    "date": "2026-02-05",
+    "sha": "c3d4e5f"
+  },
+  {
+    "repo": "frontend",
+    "commit": "Implement login page and auth flow",
+    "author": "Sara",
+    "date": "2026-02-06",
+    "sha": "d4e5f6a"
+  },
+  {
+    "repo": "backend",
+    "commit": "Setup CI/CD pipeline with GitHub Actions",
+    "author": "Priya",
+    "date": "2026-02-07",
+    "sha": "e5f6a7b"
+  },
+  {
+    "repo": "frontend",
+    "commit": "Add dashboard layout and navigation components",
+    "author": "Sara",
+    "date": "2026-02-08",
+    "sha": "f6a7b8c"
+  },
+  {
+    "repo": "backend",
+    "commit": "Create auth endpoints: /login, /logout, /refresh",
+    "author": "Ali",
+    "date": "2026-02-09",
+    "sha": "a7b8c9d"
+  },
+  {
+    "repo": "frontend",
+    "commit": "User profile page — avatar, settings form",
+    "author": "Sara",
+    "date": "2026-02-10",
+    "sha": "b8c9d0e"
+  },
+  {
+    "repo": "backend",
+    "commit": "Add JWT token refresh and session management",
+    "author": "Ali",
+    "date": "2026-02-12",
+    "sha": "c9d0e1f"
+  },
+  {
+    "repo": "frontend",
+    "commit": "Start mobile responsive layout (WIP — not merged)",
+    "author": "Sara",
+    "date": "2026-02-14",
+    "sha": "d0e1f2a"
+  },
+  {
+    "repo": "backend",
+    "commit": "Add notification service skeleton",
+    "author": "Priya",
+    "date": "2026-02-16",
+    "sha": "e1f2a3b"
+  },
+  {
+    "repo": "backend",
+    "commit": "WIP: login API integration tests — blocked on OAuth config",
+    "author": "Ali",
+    "date": "2026-02-19",
+    "sha": "f2a3b4c"
+  }
+]

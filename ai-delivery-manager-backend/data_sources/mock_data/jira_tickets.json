@@ -1,0 +1,84 @@
+[
+  {
+    "id": "PROJ-101",
+    "title": "Implement login API",
+    "status": "In Progress",
+    "assignee": "Ali",
+    "due_date": "2026-02-15",
+    "priority": "High"
+  },
+  {
+    "id": "PROJ-102",
+    "title": "Client dashboard UI",
+    "status": "Done",
+    "assignee": "Sara",
+    "due_date": "2026-02-10",
+    "priority": "High"
+  },
+  {
+    "id": "PROJ-103",
+    "title": "Payment gateway integration",
+    "status": "Blocked",
+    "assignee": "Ali",
+    "due_date": "2026-02-18",
+    "priority": "Critical",
+    "blocked_reason": "Waiting for login API to be merged before starting payment flow"
+  },
+  {
+    "id": "PROJ-104",
+    "title": "Notification service",
+    "status": "In Progress",
+    "assignee": "Priya",
+    "due_date": "2026-02-22",
+    "priority": "Medium"
+  },
+  {
+    "id": "PROJ-105",
+    "title": "User profile page",
+    "status": "Done",
+    "assignee": "Sara",
+    "due_date": "2026-02-08",
+    "priority": "Low"
+  },
+  {
+    "id": "PROJ-106",
+    "title": "API rate limiting",
+    "status": "To Do",
+    "assignee": "Ali",
+    "due_date": "2026-02-25",
+    "priority": "Medium"
+  },
+  {
+    "id": "PROJ-107",
+    "title": "Mobile responsive layout",
+    "status": "In Progress",
+    "assignee": "Sara",
+    "due_date": "2026-02-14",
+    "priority": "High"
+  },
+  {
+    "id": "PROJ-108",
+    "title": "End-to-end testing setup",
+    "status": "To Do",
+    "assignee": "Priya",
+    "due_date": "2026-02-28",
+    "priority": "Low"
+  },
+  {
+    "id": "PROJ-109",
+    "title": "Security audit & fixes",
+    "status": "Blocked",
+    "assignee": "Ali",
+    "due_date": "2026-02-17",
+    "priority": "Critical",
+    "blocked_reason": "Awaiting compliance team sign-off"
+  },
+  {
+    "id": "PROJ-110",
+    "title": "Deployment pipeline (CI/CD)",
+    "status": "Done",
+    "assignee": "Priya",
+    "due_date": "2026-02-05",
+    "priority": "High"
+  }
+]
