@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,13 +20,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^_4%u7xlo#02iyv#nwt=ivm6rs)z-dsae+4xr(@(#s2@f3*@$o'
+# Read from environment in production, fall back to insecure default for local dev
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-^_4%u7xlo#02iyv#nwt=ivm6rs)z-dsae+4xr(@(#s2@f3*@$o'
+)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Set DEBUG=False in production via env var
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+# Accepts all hosts locally; in production set DJANGO_ALLOWED_HOSTS env var
+_raw_hosts = os.environ.get('DJANGO_ALLOWED_HOSTS', '')
+ALLOWED_HOSTS = [h.strip() for h in _raw_hosts.split(',') if h.strip()] or ['*']
 
 
 # Application definition
@@ -128,7 +134,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# CORS - allow frontend dev server
+# CORS — allow local dev + any production frontend URL set via env var
+_cors_origins = os.environ.get('CORS_ALLOWED_ORIGINS', '')
+_extra_origins = [o.strip() for o in _cors_origins.split(',') if o.strip()]
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-]
+    "http://127.0.0.1:5173",
+] + _extra_origins

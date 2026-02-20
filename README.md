@@ -82,39 +82,95 @@ presentation.html              Self-contained slide deck (open in any browser)
 
 ---
 
-## Deploying for Free
+## Deploying for Free (Always On)
 
-### Backend → [Render](https://render.com)
+The backend goes on **Render** (free), the frontend goes on **Vercel** (free). A free ping service keeps the backend awake 24/7 — no sleeping, no cold starts.
 
-1. Push this repo to GitHub.
-2. Go to Render → **New Web Service** → connect your repo.
-3. Set **Root Directory** to `ai-delivery-manager-backend`.
-4. Build command: `pip install -r requirements.txt && python manage.py migrate && python manage.py seed_workboard && python manage.py augment_workboard`
-5. Start command: `python manage.py runserver 0.0.0.0:$PORT`
-6. Add environment variable: `DJANGO_ALLOWED_HOSTS=your-app.onrender.com`
-7. Free tier — sleeps after 15 min of inactivity (first request after sleep takes ~30s).
+---
 
-### Frontend → [Vercel](https://vercel.com)
+### Step 1 — Deploy the Backend on Render
 
-1. Go to Vercel → **New Project** → import your GitHub repo.
-2. Set **Root Directory** to `ai-delivery-manager-frontend`.
-3. Add environment variable: `VITE_API_URL=https://your-backend.onrender.com`
-4. Update `src/services/api.js` to use `import.meta.env.VITE_API_URL` as the base URL.
-5. Deploy — Vercel handles the rest. Free forever for personal projects.
+1. Go to [render.com](https://render.com) → sign up with GitHub → click **New → Web Service**.
+2. Connect your GitHub repo.
+3. Fill in these fields exactly:
 
-### Update Django ALLOWED_HOSTS for production
+   | Field | Value |
+   |-------|-------|
+   | **Name** | `ai-delivery-manager-backend` (or anything you like) |
+   | **Root Directory** | `ai-delivery-manager-backend` |
+   | **Environment** | `Python 3` |
+   | **Build Command** | `pip install -r requirements.txt` |
+   | **Start Command** | `bash start.sh` |
+   | **Instance Type** | `Free` |
 
-In `ai-delivery-manager-backend/config/settings.py`, change:
-```python
-ALLOWED_HOSTS = ['*']   # already set this way — Render will work
-```
+4. Click **Advanced → Add Environment Variable** and add these:
 
-And update CORS to allow your Vercel domain:
-```python
-CORS_ALLOWED_ORIGINS = [
-    "https://your-app.vercel.app",
-]
-```
+   | Key | Value |
+   |-----|-------|
+   | `DJANGO_DEBUG` | `False` |
+   | `DJANGO_SECRET_KEY` | any long random string, e.g. `x8k2!mP9qLz3nT7wV1sR6uY4cJ0bA5` |
+   | `DJANGO_ALLOWED_HOSTS` | `your-app-name.onrender.com` (you'll know this after first deploy) |
+   | `CORS_ALLOWED_ORIGINS` | `https://your-app.vercel.app` (fill in after Step 2) |
+
+5. Click **Create Web Service**. Render will build and deploy automatically.
+
+6. Once deployed, visit `https://your-app-name.onrender.com/api/reports/dashboard/` — you should see JSON with project data. ✅
+
+> **About the data:** `start.sh` runs `seed_workboard` and `augment_workboard` every time the server starts, so demo data is always present — even after a restart or redeploy.
+
+---
+
+### Step 2 — Deploy the Frontend on Vercel
+
+1. Go to [vercel.com](https://vercel.com) → sign up with GitHub → click **Add New → Project**.
+2. Import your GitHub repo.
+3. Fill in:
+
+   | Field | Value |
+   |-------|-------|
+   | **Root Directory** | `ai-delivery-manager-frontend` |
+   | **Framework Preset** | `Vite` (auto-detected) |
+
+4. Click **Environment Variables** and add:
+
+   | Key | Value |
+   |-----|-------|
+   | `VITE_API_BASE` | `https://your-app-name.onrender.com/api/reports` |
+
+   *(Replace `your-app-name` with your actual Render URL from Step 1)*
+
+5. Click **Deploy**. Vercel builds and gives you a URL like `https://your-app.vercel.app`. ✅
+
+---
+
+### Step 3 — Update CORS on Render (links the two together)
+
+1. Go back to your Render service → **Environment** tab.
+2. Update `CORS_ALLOWED_ORIGINS` to your actual Vercel URL: `https://your-app.vercel.app`.
+3. Click **Save Changes** → Render redeploys automatically in ~1 minute.
+
+---
+
+### Step 4 — Keep the Backend Always Awake (Free)
+
+Render's free tier pauses after 15 minutes of no traffic. Fix this with a free ping service:
+
+1. Go to [cron-job.org](https://cron-job.org) → create a free account.
+2. Click **Create Cronjob**:
+   - **URL:** `https://your-app-name.onrender.com/api/reports/dashboard/`
+   - **Schedule:** Every 14 minutes
+3. Save. That's it — the backend will never sleep again. ✅
+
+---
+
+### Final Result
+
+| | URL | Always On? | Data? |
+|--|-----|-----------|-------|
+| **Frontend** | `https://your-app.vercel.app` | ✅ Yes | ✅ Yes |
+| **Backend** | `https://your-app-name.onrender.com` | ✅ Yes (via ping) | ✅ Yes (seeded on startup) |
+
+Both are completely free. No credit card needed.
 
 ---
 
@@ -122,8 +178,8 @@ CORS_ALLOWED_ORIGINS = [
 
 | Layer | Technology |
 |-------|-----------|
-| Backend | Django 6 + Django REST Framework |
-| Database | SQLite (local) |
+| Backend | Django 6 + Django REST Framework + Gunicorn |
+| Database | SQLite (auto-seeded with demo data on every startup) |
 | Frontend | React 19 + Vite 7 |
 | Styling | Plain CSS |
-| Deployment | Render (backend) + Vercel (frontend) |
+| Deployment | Render (backend, free) + Vercel (frontend, free) + cron-job.org (keep-alive, free) |
